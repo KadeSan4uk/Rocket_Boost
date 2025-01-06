@@ -4,11 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
-    [SerializeField] float loadSceneDilay = 1f;
-    [SerializeField] AudioClip crash;
-    [SerializeField] AudioClip success;
+    [SerializeField] float loadSceneDilay = 1.5f;
+    [SerializeField] AudioClip crashSFX;
+    [SerializeField] AudioClip successSFX;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem crashParticles;
 
     AudioSource audioSource;
+
+    bool IsControlable = true;
 
     private void Start()
     {
@@ -17,6 +21,8 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!IsControlable) { return; }
+
         switch (collision.gameObject.tag)
         {
             case "Friendly":
@@ -33,16 +39,24 @@ public class CollisionHandler : MonoBehaviour
 
     void StartSuccessSequense()
     {
-        audioSource.PlayOneShot(success, 0.6f);
+        IsControlable = false;
+        successParticles.Play();
+        audioSource.Stop();
+        audioSource.PlayOneShot(successSFX, 0.6f);
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", loadSceneDilay);
+        IsControlable = true;
     }
 
     void StartCrashSequence()
     {
-        audioSource.PlayOneShot(crash, 0.1f);
+        IsControlable = false;
+        crashParticles.Play();
+        audioSource.Stop();
+        audioSource.PlayOneShot(crashSFX, 0.1f);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", loadSceneDilay);
+        IsControlable = true;
     }
 
     void ReloadLevel()
