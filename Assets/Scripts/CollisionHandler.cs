@@ -40,9 +40,9 @@ public class CollisionHandler : MonoBehaviour
     void StartSuccessSequense()
     {
         IsControlable = false;
-        successParticles.Play();
         audioSource.Stop();
         audioSource.PlayOneShot(successSFX, 0.6f);
+        successParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", loadSceneDilay);
         IsControlable = true;
@@ -51,9 +51,9 @@ public class CollisionHandler : MonoBehaviour
     void StartCrashSequence()
     {
         IsControlable = false;
-        crashParticles.Play();
         audioSource.Stop();
         audioSource.PlayOneShot(crashSFX, 0.1f);
+        crashParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", loadSceneDilay);
         IsControlable = true;
