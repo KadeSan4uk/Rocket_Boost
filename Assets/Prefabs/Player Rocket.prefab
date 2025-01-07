@@ -139,7 +139,7 @@ MonoBehaviour:
       m_Action: Rotation
       m_Flags: 8
     m_Flags: 0
-  thrustSpeed: 500
+  thrustSpeed: 800
   rotationSpeed: 100
   mainEngine: {fileID: 8300000, guid: 82486d4e77c0abf45a92b93104653bac, type: 3}
   EngineParticle: {fileID: 6353907528234118569}

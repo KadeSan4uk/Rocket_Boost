@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
@@ -12,16 +13,34 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource audioSource;
 
-    bool IsControlable = true;
+    bool isControlable = true;
+    bool isCollidable = true;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        RespondToDebugKey();
+    }
+
+    private void RespondToDebugKey()
+    {
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            LoadNextLevel();
+        }
+        else if (Keyboard.current.cKey.wasPressedThisFrame) // считывание 'С' wasPressedThisFrame один раз. 
+        {
+            isCollidable = !isCollidable;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (!IsControlable) { return; }
+        if (!isControlable || !isCollidable) { return; }
 
         switch (collision.gameObject.tag)
         {
@@ -39,24 +58,24 @@ public class CollisionHandler : MonoBehaviour
 
     void StartSuccessSequense()
     {
-        IsControlable = false;
+        isControlable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(successSFX, 0.6f);
         successParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", loadSceneDilay);
-        IsControlable = true;
+        isControlable = true;
     }
 
     void StartCrashSequence()
     {
-        IsControlable = false;
+        isControlable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(crashSFX, 0.1f);
         crashParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", loadSceneDilay);
-        IsControlable = true;
+        isControlable = true;
     }
 
     void ReloadLevel()
