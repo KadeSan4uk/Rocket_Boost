@@ -44,10 +44,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.87805855, b: 0, a: 1}
-  m_Intensity: 150
-  m_Range: 8.080159
-  m_SpotAngle: 103.41982
-  m_InnerSpotAngle: 59.983868
+  m_Intensity: 1000
+  m_Range: 8.104422
+  m_SpotAngle: 72.9987
+  m_InnerSpotAngle: 72.9987
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 8215014806190909884}
   - component: {fileID: 5215799622728071995}
   - component: {fileID: 9020635912165004895}
+  - component: {fileID: 7474391435638661759}
   m_Layer: 0
   m_Name: Player Rocket
   m_TagString: Player
@@ -646,6 +647,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7474391435638661759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199271425005495360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0574ceffeb08e4b468779271b00ab4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &553143305367007727
 PrefabInstance:
   m_ObjectHideFlags: 0
