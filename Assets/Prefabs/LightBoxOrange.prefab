@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 100457559335302361}
   - component: {fileID: 6432740862728202224}
   m_Layer: 0
-  m_Name: LightBox
+  m_Name: LightBoxOrange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
